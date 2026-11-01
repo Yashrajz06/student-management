@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Student Record Management System built with Express and MongoDB." />
+  <title>Student Record Management</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">MongoDB · Express · Node.js</p>
+        <h1>Student Records</h1>
+        <p class="subtitle">Create, view, update, and remove student information.</p>
+      </div>
+      <span class="status" id="dbStatus">Checking database…</span>
+    </header>
+
+    <section class="panel form-panel">
+      <div class="section-heading">
+        <div><h2 id="formTitle">Add a student</h2><p>Fields marked * are required.</p></div>
+        <button class="button secondary hidden" id="cancelEdit" type="button">Cancel edit</button>
+      </div>
+      <form id="studentForm">
+        <input type="hidden" id="studentId" />
+        <div class="form-grid">
+          <label>Full name *<input id="name" name="name" required minlength="2" maxlength="80" placeholder="e.g. Rahul Sharma" /></label>
+          <label>Email address *<input id="email" name="email" type="email" required maxlength="120" placeholder="rahul@example.com" /></label>
+          <label>Course *<input id="course" name="course" required minlength="2" maxlength="100" placeholder="e.g. Computer Science" /></label>
+          <label>Year *<select id="year" name="year" required><option value="">Select year</option><option value="1">1st year</option><option value="2">2nd year</option><option value="3">3rd year</option><option value="4">4th year</option><option value="5">5th year</option><option value="6">6th year</option></select></label>
+        </div>
+        <div class="form-actions"><button class="button primary" id="submitButton" type="submit">Add student</button><span id="formMessage" role="status"></span></div>
+      </form>
+    </section>
+
+    <section class="panel records-panel">
+      <div class="section-heading"><div><h2>All students</h2><p id="recordCount">Loading records…</p></div><button class="button secondary" id="refreshButton" type="button">Refresh</button></div>
+      <div class="table-wrap">
+        <table><thead><tr><th>Name</th><th>Email</th><th>Course</th><th>Year</th><th>Actions</th></tr></thead><tbody id="studentRows"><tr><td colspan="5" class="empty">Loading…</td></tr></tbody></table>
+      </div>
+    </section>
+    <footer>Student Record Management System · CRUD practical</footer>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
